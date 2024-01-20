@@ -1,0 +1,501 @@
+﻿client_id,biz_name,industry
+CNT389,Qualcomm,Information Technology
+CNT031,Ameriprise Financial,Financials
+CNT460,United Rentals,Industrials
+CNT161,Eaton Corporation,Industrials
+CNT068,BlackRock,Financials
+CNT387,PulteGroup,Consumer Discretionary
+CNT396,Regeneron,Health Care
+CNT470,VF Corporation,Consumer Discretionary
+CNT163,Ecolab,Materials
+CNT241,Huntington Bancshares,Financials
+CNT257,Intuitive Surgical,Health Care
+CNT042,Arch Capital Group,Financials
+CNT455,"UDR, Inc.",Real Estate
+CNT401,Robert Half,Industrials
+CNT035,Analog Devices,Information Technology
+CNT072,BorgWarner,Consumer Discretionary
+CNT285,Lam Research,Information Technology
+CNT170,Enphase,Information Technology
+CNT153,Domino's,Consumer Discretionary
+CNT063,Berkshire Hathaway,Financials
+CNT086,Capital One,Financials
+CNT023,Amcor,Materials
+CNT367,Pentair,Industrials
+CNT434,Targa Resources,Energy
+CNT047,AT&T,Communication Services
+CNT132,Corteva,Materials
+CNT357,Oracle Corporation,Information Technology
+CNT032,Ametek,Industrials
+CNT033,Amgen,Health Care
+CNT272,Kellanova,Consumer Staples
+CNT147,Diamondback Energy,Energy
+CNT136,Crown Castle,Real Estate
+CNT210,GE HealthCare,Health Care
+CNT022,Amazon,Consumer Discretionary
+CNT431,T. Rowe Price,Financials
+CNT448,Travelers Companies (The),Financials
+CNT085,Campbell Soup Company,Consumer Staples
+CNT112,Cintas,Industrials
+CNT228,Hershey's,Consumer Staples
+CNT477,Walgreens Boots Alliance,Consumer Staples
+CNT383,Prudential Financial,Financials
+CNT261,Iron Mountain,Real Estate
+CNT218,Gilead Sciences,Health Care
+CNT371,Philip Morris International,Consumer Staples
+CNT245,Idexx Laboratories,Health Care
+CNT204,Fortive,Industrials
+CNT296,Lululemon Athletica,Consumer Discretionary
+CNT004,AbbVie,Health Care
+CNT353,Old Dominion,Industrials
+CNT087,Cardinal Health,Health Care
+CNT407,RTX Corporation,Industrials
+CNT149,Discover Financial,Financials
+CNT050,Automated Data Processing,Industrials
+CNT437,Teledyne Technologies,Information Technology
+CNT076,Broadcom Inc.,Information Technology
+CNT341,Nordson Corporation,Industrials
+CNT328,Moody's Corporation,Financials
+CNT106,Chevron Corporation,Energy
+CNT034,Amphenol,Information Technology
+CNT319,Microsoft,Information Technology
+CNT390,Quanta Services,Industrials
+CNT435,Target Corporation,Consumer Staples
+CNT270,JPMorgan Chase,Financials
+CNT209,Gartner,Information Technology
+CNT069,Blackstone,Financials
+CNT423,State Street Corporation,Financials
+CNT160,Eastman Chemical Company,Materials
+CNT121,Colgate-Palmolive,Consumer Staples
+CNT493,Wynn Resorts,Consumer Discretionary
+CNT205,Fox Corporation ,Communication Services
+CNT464,Ventas,Real Estate
+CNT125,ConocoPhillips,Energy
+CNT303,Marsh McLennan,Financials
+CNT410,SBA Communications,Real Estate
+CNT301,MarketAxess,Financials
+CNT103,Charles River Laboratories,Health Care
+CNT005,Accenture,Information Technology
+CNT184,Exelon,Utilities
+CNT096,Celanese,Materials
+CNT129,CooperCompanies,Health Care
+CNT028,American International Group,Financials
+CNT252,Intercontinental Exchange,Financials
+CNT447,TransDigm Group,Industrials
+CNT233,Home Depot (The),Consumer Discretionary
+CNT049,Autodesk,Information Technology
+CNT276,Keysight,Information Technology
+CNT288,Leidos,Industrials
+CNT158,Duke Energy,Utilities
+CNT054,Axon Enterprise,Industrials
+CNT461,UnitedHealth Group,Health Care
+CNT178,Essex Property Trust,Real Estate
+CNT162,eBay,Consumer Discretionary
+CNT468,Verizon,Communication Services
+CNT141,Darden Restaurants,Consumer Discretionary
+CNT345,Norwegian Cruise Line Holdings,Consumer Discretionary
+CNT115,Citizens Financial Group,Financials
+CNT331,Motorola Solutions,Information Technology
+CNT313,Meta Platforms,Communication Services
+CNT102,CH Robinson,Industrials
+CNT195,Fidelity National Information Services,Financials
+CNT376,Pool Corporation,Consumer Discretionary
+CNT400,Revvity,Health Care
+CNT119,Coca-Cola Company ,Consumer Staples
+CNT268,Johnson & Johnson,Health Care
+CNT260,IQVIA,Health Care
+CNT430,T-Mobile US,Communication Services
+CNT152,Dominion Energy,Utilities
+CNT318,Micron Technology,Information Technology
+CNT399,ResMed,Health Care
+CNT329,Morgan Stanley,Financials
+CNT298,M&T Bank,Financials
+CNT386,Public Storage,Real Estate
+CNT133,CoStar Group,Real Estate
+CNT337,News Corp ,Communication Services
+CNT123,Comerica,Financials
+CNT020,Alphabet Inc. ,Communication Services
+CNT373,Pinnacle West,Utilities
+CNT110,Cigna,Health Care
+CNT144,Dentsply Sirona,Health Care
+CNT181,Everest Re,Financials
+CNT308,McCormick & Company,Consumer Staples
+CNT323,Molina Healthcare,Health Care
+CNT312,Merck & Co.,Health Care
+CNT081,Bunge Global SA,Consumer Staples
+CNT041,Aptiv,Consumer Discretionary
+CNT484,Wells Fargo,Financials
+CNT458,United Airlines Holdings,Industrials
+CNT278,Kimco Realty,Real Estate
+CNT237,Howmet Aerospace,Industrials
+CNT444,TJX Companies,Consumer Discretionary
+CNT408,S&P Global,Financials
+CNT404,Roper Technologies,Information Technology
+CNT473,Visa Inc.,Financials
+CNT384,PTC,Information Technology
+CNT418,Snap-on,Industrials
+CNT012,Airbnb,Consumer Discretionary
+CNT354,Omnicom Group,Communication Services
+CNT462,Universal Health Services,Health Care
+CNT327,Monster Beverage,Consumer Staples
+CNT292,LKQ Corporation,Consumer Discretionary
+CNT262,J.B. Hunt,Industrials
+CNT030,American Water Works,Utilities
+CNT078,Brown & Brown,Financials
+CNT190,FactSet,Financials
+CNT305,Masco,Industrials
+CNT191,Fair Isaac,Information Technology
+CNT394,Realty Income,Real Estate
+CNT048,Atmos Energy,Utilities
+CNT094,CBRE Group,Real Estate
+CNT314,MetLife,Financials
+CNT084,Camden Property Trust,Real Estate
+CNT224,Hasbro,Consumer Discretionary
+CNT397,Regions Financial Corporation,Financials
+CNT340,NiSource,Utilities
+CNT011,Air Products and Chemicals,Materials
+CNT120,Cognizant,Information Technology
+CNT232,Hologic,Health Care
+CNT287,Las Vegas Sands,Consumer Discretionary
+CNT079,Brown–Forman,Consumer Staples
+CNT405,Ross Stores,Consumer Discretionary
+CNT167,Elevance Health,Health Care
+CNT254,International Paper,Materials
+CNT230,Hewlett Packard Enterprise,Information Technology
+CNT351,O'Reilly Auto Parts,Consumer Discretionary
+CNT385,Public Service Enterprise Group,Utilities
+CNT320,Mid-America Apartment Communities,Real Estate
+CNT171,Entergy,Utilities
+CNT299,Marathon Oil,Energy
+CNT500,Zoetis,Health Care
+CNT188,ExxonMobil,Energy
+CNT045,Arthur J. Gallagher & Co.,Financials
+CNT356,ONEOK,Energy
+CNT130,Copart,Industrials
+CNT361,Palo Alto Networks,Information Technology
+CNT365,Paycom,Industrials
+CNT219,Global Payments,Financials
+CNT344,Northrop Grumman,Industrials
+CNT495,Xylem Inc.,Industrials
+CNT043,Archer-Daniels-Midland,Consumer Staples
+CNT496,Yum! Brands,Consumer Discretionary
+CNT183,Eversource,Utilities
+CNT168,Eli Lilly and Company,Health Care
+CNT134,Costco,Consumer Staples
+CNT425,Steris,Health Care
+CNT246,Illinois Tool Works,Industrials
+CNT421,Stanley Black & Decker,Industrials
+CNT003,Abbott,Health Care
+CNT459,United Parcel Service,Industrials
+CNT412,Seagate Technology,Information Technology
+CNT432,Take-Two Interactive,Communication Services
+CNT099,CenterPoint Energy,Utilities
+CNT315,Mettler Toledo,Health Care
+CNT064,Best Buy,Consumer Discretionary
+CNT457,Union Pacific Corporation,Industrials
+CNT185,Expedia Group,Consumer Discretionary
+CNT486,West Pharmaceutical Services,Health Care
+CNT480,Warner Bros. Discovery,Communication Services
+CNT169,Emerson Electric,Industrials
+CNT244,IDEX Corporation,Industrials
+CNT438,Teleflex,Health Care
+CNT203,Fortinet,Information Technology
+CNT282,Kroger,Consumer Staples
+CNT324,Molson Coors Beverage Company,Consumer Staples
+CNT247,Illumina,Health Care
+CNT368,PepsiCo,Consumer Staples
+CNT060,Baxter International,Health Care
+CNT297,LyondellBasell,Materials
+CNT427,Synchrony Financial,Financials
+CNT366,PayPal,Financials
+CNT409,Salesforce,Information Technology
+CNT128,Constellation Energy,Utilities
+CNT463,Valero Energy,Energy
+CNT306,Mastercard,Financials
+CNT322,Mohawk Industries,Consumer Discretionary
+CNT467,Verisk,Industrials
+CNT137,CSX,Industrials
+CNT304,Martin Marietta Materials,Materials
+CNT039,Apple Inc.,Information Technology
+CNT239,Hubbell Incorporated,Industrials
+CNT015,Alexandria Real Estate Equities,Real Estate
+CNT053,Avery Dennison,Materials
+CNT242,Huntington Ingalls Industries,Industrials
+CNT193,Federal Realty,Real Estate
+CNT201,FMC Corporation,Materials
+CNT280,KLA Corporation,Information Technology
+CNT052,AvalonBay Communities,Real Estate
+CNT334,NetApp,Information Technology
+CNT182,Evergy,Utilities
+CNT104,Charles Schwab Corporation,Financials
+CNT411,Schlumberger,Energy
+CNT265,Jack Henry & Associates,Financials
+CNT283,L3Harris,Industrials
+CNT139,CVS Health,Health Care
+CNT414,ServiceNow,Information Technology
+CNT225,HCA Healthcare,Health Care
+CNT422,Starbucks,Consumer Discretionary
+CNT151,Dollar Tree,Consumer Staples
+CNT377,PPG Industries,Materials
+CNT108,Chubb Limited,Financials
+CNT199,Fiserv,Financials
+CNT419,Southern Company,Utilities
+CNT346,NRG Energy,Utilities
+CNT291,Live Nation Entertainment,Communication Services
+CNT013,Akamai,Information Technology
+CNT089,Carnival,Consumer Discretionary
+CNT450,Truist,Financials
+CNT009,Aflac,Financials
+CNT439,Teradyne,Information Technology
+CNT135,Coterra,Energy
+CNT197,First Solar,Information Technology
+CNT040,Applied Materials,Information Technology
+CNT392,Ralph Lauren Corporation,Consumer Discretionary
+CNT008,AES Corporation,Utilities
+CNT469,Vertex Pharmaceuticals,Health Care
+CNT010,Agilent Technologies,Health Care
+CNT080,Builders FirstSource,Industrials
+CNT381,Progressive Corporation,Financials
+CNT476,Wabtec,Industrials
+CNT024,Ameren,Utilities
+CNT044,Arista Networks,Information Technology
+CNT174,EQT,Energy
+CNT046,Assurant,Financials
+CNT211,Gen Digital,Information Technology
+CNT154,Dover Corporation,Industrials
+CNT279,Kinder Morgan,Energy
+CNT479,Walt Disney,Communication Services
+CNT122,Comcast,Communication Services
+CNT118,CMS Energy,Utilities
+CNT255,Interpublic Group of Companies (The),Communication Services
+CNT109,Church & Dwight,Consumer Staples
+CNT236,Host Hotels & Resorts,Real Estate
+CNT352,Occidental Petroleum,Energy
+CNT082,Cadence Design Systems,Information Technology
+CNT026,American Electric Power,Utilities
+CNT166,Electronic Arts,Communication Services
+CNT481,Waste Management,Industrials
+CNT172,EOG Resources,Energy
+CNT388,Qorvo,Information Technology
+CNT117,CME Group,Financials
+CNT413,Sempra Energy,Utilities
+CNT251,Intel,Information Technology
+CNT234,Honeywell,Industrials
+CNT111,Cincinnati Financial,Financials
+CNT067,Biogen,Health Care
+CNT433,"Tapestry, Inc.",Consumer Discretionary
+CNT202,Ford Motor Company,Consumer Discretionary
+CNT220,Globe Life,Financials
+CNT243,IBM,Information Technology
+CNT347,Nucor,Materials
+CNT289,Lennar,Consumer Discretionary
+CNT017,Allegion,Industrials
+CNT374,Pioneer Natural Resources,Energy
+CNT146,Dexcom,Health Care
+CNT393,Raymond James,Financials
+CNT302,Marriott International,Consumer Discretionary
+CNT281,Kraft Heinz,Consumer Staples
+CNT007,Advanced Micro Devices,Information Technology
+CNT058,Bank of New York Mellon,Financials
+CNT066,Bio-Techne,Health Care
+CNT490,Whirlpool Corporation,Consumer Discretionary
+CNT264,Jabil,Information Technology
+CNT006,Adobe Inc.,Information Technology
+CNT266,Jacobs Solutions,Industrials
+CNT488,WestRock,Materials
+CNT038,APA Corporation,Energy
+CNT309,McDonald's,Consumer Discretionary
+CNT440,"Tesla, Inc.",Consumer Discretionary
+CNT395,Regency Centers,Real Estate
+CNT055,Baker Hughes,Energy
+CNT027,American Express,Financials
+CNT332,MSCI,Financials
+CNT217,Genuine Parts Company,Consumer Discretionary
+CNT489,Weyerhaeuser,Real Estate
+CNT363,Parker Hannifin,Industrials
+CNT349,"NVR, Inc.",Consumer Discretionary
+CNT159,DuPont,Materials
+CNT077,Broadridge Financial Solutions,Industrials
+CNT311,Medtronic,Health Care
+CNT428,Synopsys,Information Technology
+CNT025,American Airlines Group,Industrials
+CNT212,Generac,Industrials
+CNT090,Carrier Global,Industrials
+CNT105,Charter Communications,Communication Services
+CNT215,General Mills,Consumer Staples
+CNT127,Constellation Brands,Consumer Staples
+CNT140,Danaher Corporation,Health Care
+CNT194,FedEx,Industrials
+CNT441,Texas Instruments,Information Technology
+CNT056,Ball Corporation,Materials
+CNT206,Franklin Templeton,Financials
+CNT165,Edwards Lifesciences,Health Care
+CNT059,"Bath & Body Works, Inc.",Consumer Discretionary
+CNT362,Paramount Global,Communication Services
+CNT350,NXP Semiconductors,Information Technology
+CNT426,Stryker Corporation,Health Care
+CNT062,Berkley,Financials
+CNT065,Bio-Rad,Health Care
+CNT240,Humana,Health Care
+CNT235,Hormel Foods,Consumer Staples
+CNT286,Lamb Weston,Consumer Staples
+CNT333,"Nasdaq, Inc.",Financials
+CNT155,Dow Inc.,Materials
+CNT483,WEC Energy Group,Utilities
+CNT179,Estée Lauder Companies (The),Consumer Staples
+CNT364,Paychex,Industrials
+CNT420,Southwest Airlines,Industrials
+CNT238,HP Inc.,Information Technology
+CNT417,Skyworks Solutions,Information Technology
+CNT148,Digital Realty,Real Estate
+CNT186,Expeditors International,Industrials
+CNT164,Edison International,Utilities
+CNT214,General Electric,Industrials
+CNT380,Procter & Gamble,Consumer Staples
+CNT021,Altria,Consumer Staples
+CNT293,Lockheed Martin,Industrials
+CNT073,Boston Properties,Real Estate
+CNT454,Uber,Industrials
+CNT453,U.S. Bank,Financials
+CNT157,DTE Energy,Utilities
+CNT339,"Nike, Inc.",Consumer Discretionary
+CNT416,Simon Property Group,Real Estate
+CNT497,Zebra Technologies,Information Technology
+CNT180,Etsy,Consumer Discretionary
+CNT475,W. W. Grainger,Industrials
+CNT187,Extra Space Storage,Real Estate
+CNT150,Dollar General,Consumer Staples
+CNT359,Paccar,Industrials
+CNT499,Zions Bancorporation,Financials
+CNT227,Henry Schein,Health Care
+CNT200,Fleetcor,Financials
+CNT208,Garmin,Consumer Discretionary
+CNT482,Waters Corporation,Health Care
+CNT177,Equity Residential,Real Estate
+CNT071,Booking Holdings,Consumer Discretionary
+CNT101,CF Industries,Materials
+CNT018,Alliant Energy,Utilities
+CNT145,Devon Energy,Energy
+CNT226,Healthpeak,Real Estate
+CNT061,Becton Dickinson,Health Care
+CNT284,LabCorp,Health Care
+CNT370,PG&E Corporation,Utilities
+CNT491,Williams Companies,Energy
+CNT474,Vulcan Materials Company,Materials
+CNT173,EPAM Systems,Information Technology
+CNT442,Textron,Industrials
+CNT091,Catalent,Health Care
+CNT259,Invitation Homes,Real Estate
+CNT317,Microchip Technology,Information Technology
+CNT378,PPL Corporation,Utilities
+CNT485,Welltower,Real Estate
+CNT271,Juniper Networks,Information Technology
+CNT492,Willis Towers Watson,Financials
+CNT456,Ulta Beauty,Consumer Discretionary
+CNT267,John Deere,Industrials
+CNT143,Delta Air Lines,Industrials
+CNT097,Cencora,Health Care
+CNT175,Equifax,Industrials
+CNT451,Tyler Technologies,Information Technology
+CNT342,Norfolk Southern Railway,Industrials
+CNT335,Netflix,Communication Services
+CNT250,Insulet,Health Care
+CNT465,Veralto,Industrials
+CNT358,Otis Worldwide,Industrials
+CNT336,Newmont,Materials
+CNT372,Phillips 66,Energy
+CNT037,Aon,Financials
+CNT382,Prologis,Real Estate
+CNT192,Fastenal,Industrials
+CNT131,Corning Inc.,Information Technology
+CNT445,Tractor Supply,Consumer Discretionary
+CNT036,Ansys,Information Technology
+CNT494,Xcel Energy,Utilities
+CNT221,Goldman Sachs,Financials
+CNT310,McKesson,Health Care
+CNT300,Marathon Petroleum,Energy
+CNT369,Pfizer,Health Care
+CNT307,Match Group,Communication Services
+CNT092,Caterpillar Inc.,Industrials
+CNT088,CarMax,Consumer Discretionary
+CNT330,Mosaic Company (The),Materials
+CNT338,NextEra Energy,Utilities
+CNT295,Lowe's,Consumer Discretionary
+CNT116,Clorox,Consumer Staples
+CNT248,Incyte,Health Care
+CNT093,Cboe Global Markets,Financials
+CNT100,Ceridian,Industrials
+CNT443,Thermo Fisher Scientific,Health Care
+CNT415,Sherwin-Williams,Materials
+CNT325,Mondelez International,Consumer Staples
+CNT478,Walmart,Consumer Staples
+CNT424,Steel Dynamics,Materials
+CNT429,Sysco,Consumer Staples
+CNT273,Kenvue,Consumer Staples
+CNT138,Cummins,Industrials
+CNT452,Tyson Foods,Consumer Staples
+CNT002,A. O. Smith,Industrials
+CNT142,DaVita Inc.,Health Care
+CNT472,Vici Properties,Real Estate
+CNT258,Invesco,Financials
+CNT379,Principal Financial Group,Financials
+CNT269,Johnson Controls,Industrials
+CNT051,AutoZone,Consumer Discretionary
+CNT107,Chipotle Mexican Grill,Consumer Discretionary
+CNT057,Bank of America,Financials
+CNT402,Rockwell Automation,Industrials
+CNT124,Conagra Brands,Consumer Staples
+CNT095,CDW,Information Technology
+CNT156,DR Horton,Consumer Discretionary
+CNT498,Zimmer Biomet,Health Care
+CNT277,Kimberly-Clark,Consumer Staples
+CNT471,Viatris,Health Care
+CNT222,Halliburton,Energy
+CNT019,Allstate,Financials
+CNT403,"Rollins, Inc.",Industrials
+CNT406,Royal Caribbean Group,Consumer Discretionary
+CNT487,Western Digital,Information Technology
+CNT436,TE Connectivity,Information Technology
+CNT098,Centene Corporation,Health Care
+CNT316,MGM Resorts,Consumer Discretionary
+CNT398,Republic Services,Industrials
+CNT449,Trimble Inc.,Information Technology
+CNT348,Nvidia,Information Technology
+CNT029,American Tower,Real Estate
+CNT355,ON Semiconductor,Information Technology
+CNT016,Align Technology,Health Care
+CNT083,Caesars Entertainment,Consumer Discretionary
+CNT229,Hess Corporation,Energy
+CNT321,Moderna,Health Care
+CNT274,Keurig Dr Pepper,Consumer Staples
+CNT213,General Dynamics,Industrials
+CNT216,General Motors,Consumer Discretionary
+CNT113,Cisco,Information Technology
+CNT126,Consolidated Edison,Utilities
+CNT176,Equinix,Real Estate
+CNT253,International Flavors & Fragrances,Materials
+CNT275,KeyCorp,Financials
+CNT263,J.M. Smucker Company (The),Consumer Staples
+CNT223,Hartford (The),Financials
+CNT075,Bristol Myers Squibb,Health Care
+CNT231,Hilton Worldwide,Consumer Discretionary
+CNT207,Freeport-McMoRan,Materials
+CNT446,Trane Technologies,Industrials
+CNT294,Loews Corporation,Financials
+CNT256,Intuit,Information Technology
+CNT198,FirstEnergy,Utilities
+CNT189,"F5, Inc.",Information Technology
+CNT290,Linde plc,Materials
+CNT343,Northern Trust,Financials
+CNT391,Quest Diagnostics,Health Care
+CNT014,Albemarle Corporation,Materials
+CNT074,Boston Scientific,Health Care
+CNT375,PNC Financial Services,Financials
+CNT326,Monolithic Power Systems,Information Technology
+CNT070,Boeing,Industrials
+CNT114,Citigroup,Financials
+CNT466,Verisign,Information Technology
+CNT196,Fifth Third Bank,Financials
+CNT249,Ingersoll Rand,Industrials
+CNT001,3M,Industrials
+CNT360,Packaging Corporation of America,Materials
