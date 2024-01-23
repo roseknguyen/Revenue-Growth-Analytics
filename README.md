@@ -2,9 +2,8 @@
 
 Welcome to my Business Analytics project! I developed a relational database for a digital marketing company and utilized SQL and R to analyze and explore their revenue growth opportunities. The data is hypothetical, assuming that their clients are S&P 500 companies.
 
-You can view the Data Analytics for the project along with explanations here: 
-
-Alternatively, you can check out the complete business presentation [here](https://docs.google.com/presentation/d/1rk33tVznpX4Hvu0843c6KFj8_uytwp1TLZFWU5qubUk/edit?usp=sharing).
+You can check out the complete business presentation [here](https://docs.google.com/presentation/d/1rk33tVznpX4Hvu0843c6KFj8_uytwp1TLZFWU5qubUk/edit?usp=sharing).
+You can view the Data Analytics R script report here.
 
 ---
 
