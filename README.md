@@ -6,11 +6,15 @@ You can view the Data Analytics for the project along with explanations here:
 
 Alternatively, you can check out the complete business presentation [here](https://docs.google.com/presentation/d/1rk33tVznpX4Hvu0843c6KFj8_uytwp1TLZFWU5qubUk/edit?usp=sharing).
 
+---
+
 **PROJECT BACKGROUND:**
 
 This digital marketing company provides three primary marketing services: SEO (Search Engine Optimization), PPC (Pay-Per-Click Google Ads), and Web Design. Each of these services is treated as an individual project, and a client can engage in up to three distinct projects, one for each service (SEO, PPC, Web Design).
 
 The objective is to explore and analyze their clients' and projects' data, and ultimately identify opportunities for increasing revenue.
+
+---
 
 **RESULT SUMMARY:**
 
