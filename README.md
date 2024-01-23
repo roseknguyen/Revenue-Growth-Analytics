@@ -33,5 +33,5 @@ To boost revenue, the digital marketing company can leverage the following three
 
 Final Conclusion: 
 
-Considering all three opportunities, by acquiring 101 new clients, initiating 803 new projects, and expanding 328 existing projects, the digital marketing company can substantially grow its revenue. 
+Considering all three opportunities, by acquiring 101 new clients, initiating 803 new projects, and expanding 328 existing projects, the digital marketing company can substantially grow their revenue. 
 
