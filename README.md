@@ -23,7 +23,7 @@ To boost revenue, the digital marketing company can leverage the following three
 
 **Opportunity 2: Increase the Number of Projects for Existing Clients**
 
-* There are 114 current clients without an SEO project, 189 clients without a PPC project, 58 clients who have never engaged in a Web Design project, and 142 existing clients who may now require a web redesign. By capitalizing on their existing client base, they can potentially generate up to a total of 803 new projects
+* There are 114 current clients never had an SEO project, 189 clients never had a PPC project, 58 clients who have never engaged in a Web Design project, and 142 existing clients who may now require a web redesign. By capitalizing on their existing client base, they can potentially generate up to a total of 803 new projects
 
 **Opportunity 3: Increase the Scope of the Existing Projects**
 
