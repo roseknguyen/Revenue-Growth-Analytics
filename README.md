@@ -29,9 +29,9 @@ To boost revenue, the digital marketing company can leverage the following three
 
 * There are 58 projects that have maintained the same scope for 2 to 11 years (never expanded before), and there are 328 projects that haven't expanded again in the last 2 to 11 years (since its last expansion). 
 
-* By concentrating on opportunities to expand these clients, they can generate growth in 328 new projects.
+* By concentrating on opportunities to expand these clients, they can generate growth in 484 new projects.
 
 Final Conclusion: 
 
-Considering all three opportunities, by acquiring 101 new clients, initiating 803 new projects, and expanding 328 existing projects, the digital marketing company can substantially grow their revenue. 
+Considering all three opportunities, by acquiring 101 new clients, initiating 803 new projects, and expanding 484 existing projects, the digital marketing company can substantially grow their revenue. 
 
