@@ -4,7 +4,7 @@ Welcome to my Business Analytics project! I developed a relational database for 
 
 You can view the Data Analytics for the project along with explanations here: 
 
-Alternatively, you can check out the complete business presentation [here]([url](https://docs.google.com/presentation/d/1rk33tVznpX4Hvu0843c6KFj8_uytwp1TLZFWU5qubUk/edit?usp=sharing)).
+Alternatively, you can check out the complete business presentation [here](https://docs.google.com/presentation/d/1rk33tVznpX4Hvu0843c6KFj8_uytwp1TLZFWU5qubUk/edit?usp=sharing).
 
 **PROJECT BACKGROUND:**
 
