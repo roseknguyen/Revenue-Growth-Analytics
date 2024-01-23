@@ -16,12 +16,12 @@ The objective is to explore and analyze their clients' and projects' data, and u
 
 To boost revenue, the digital marketing company can leverage the following three opportunities:
 
-**Opportunity 1: Increase the Number of Customers**
+**Opportunity 1: Increase Customers**
 
 * There are six industries with a client base below the average. By concentrating on acquiring more clients in these industries to meet the average, they can onboard 101 new clients, corresponding to 101 to 303 new projects.
 
 
-**Opportunity 2: Increase the Number of Projects for Existing Clients**
+**Opportunity 2: Increase Projects for Existing Clients**
 
 * There are 114 current clients never had an SEO project, 189 clients never had a PPC project, 58 clients who have never engaged in a Web Design project, and 142 existing clients who may now require a web redesign. By capitalizing on their existing client base, they can potentially generate up to a total of 803 new projects
 
