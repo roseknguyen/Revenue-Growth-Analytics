@@ -4,7 +4,7 @@ Welcome to my Business Analytics project! I developed a relational database for 
 
 You can check out the complete business presentation [here](https://docs.google.com/presentation/d/1rk33tVznpX4Hvu0843c6KFj8_uytwp1TLZFWU5qubUk/edit?usp=sharing).
 
-You can view the Data Analytics R script report here.
+You can view the Data Analytics R script report [here](https://rpubs.com/rnguyen/revenue-growth-project).
 
 ---
 
