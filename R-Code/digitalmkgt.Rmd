@@ -1,0 +1,694 @@
+---
+title: "Revenue Growth Opportunities for a Digital Marketing Company"
+author: "Rose Khanh Nguyen"
+date: "2024-01-01"
+output:
+  html_document: default
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Welcome to my Business Analytics project! I developed a relational database for a digital marketing company and utilized SQL to analyze and explore their revenue growth opportunities. The data is hypothetical, assuming that their clients are S&P 500 companies. 
+
+This digital marketing company provides three primary marketing services: SEO (Search Engine Optimization), PPC (Pay-Per-Click Google Ads), and Web Design. Each of these services is treated as an individual project, and a client has the flexibility to engage in up to three distinct projects, one for each service (SEO, PPC, Web Design).
+
+My objective is to explore and analyze their clients and projects data, and ultimately identify opportunities for increasing revenue.
+
+The script follows the below structure:
+
+1:Create The Database
+
+2: Import Data from CSV Files
+
+3: Review Data
+
+4: Data Analytics and Data Visualization
+
+I appreciate you taking the time to check this out! If you prefer, feel free to skip ahead to the Data Analytics and Visualization section. Key points (Insights and Suggestions) are bolded for your convenience.
+
+```{r, libraries, message = FALSE}
+# R function to turn off warnings
+
+options(warn=-1)
+
+ #load packages
+library(sqldf)
+library(ggplot2)
+library(dplyr)
+library(stringr)
+library(forcats)
+```
+
+## 1. Create The Database
+
+```{r, database_connection}
+# Establish Database Connection
+db <- dbConnect(SQLite(), dbname="digitalmktg_db.sqlite")
+```
+
+### Create the "clients" table
+
+The "clients" table contains information about the clients of the digital marketing company. In this case, the clients are the S&P 500 companies.
+
+```{r, client_table}
+sqldf("DROP TABLE IF EXISTS clients", dbname = "digitalmktg_db.sqlite")
+
+sqldf("CREATE TABLE 'clients'(
+      client_id varchar(20) PRIMARY KEY,
+      biz_name varchar(100) NOT NULL,
+      industry varchar(100) NOT NULL)
+     ", dbname="digitalmktg_db.sqlite")
+```
+
+### Create the "projects" table
+
+The "projects" table houses information about each project. Each client may have from one to three projects including SEO, PPC, and Web Design.
+
+```{r, project_table}
+sqldf("DROP TABLE IF EXISTS projects", dbname = "digitalmktg_db.sqlite")
+
+sqldf("CREATE TABLE projects (
+      pro_id varchar(20) PRIMARY KEY,
+      pro_type varchar(100) NOT NULL,
+      pro_name varchar(100) NOT NULL,
+      client_id varchar(20) NOT NULL REFERENCES clients(client_id)
+      )",dbname="digitalmktg_db.sqlite")
+```
+
+### Create the "event" table
+
+The "event" table stores information about the dates when clients signed up, expanded, or canceled services. 
+
+Clients have the option to expand the scope of their projects multiple times, such as increasing the number of pages for SEO optimization or raising the budget for PPC Google Ad Campaigns. There is no expansion or cancellation for web design projects since it is a one-time project, unlike SEO and PPC, which are monthly projects. For web design, clients may sign up for a website redesign or the creation of a new site. 
+
+In this case, we assume that there is no project resumed after cancellation
+
+```{r, events_table}
+sqldf("DROP TABLE IF EXISTS events", dbname = "digitalmktg_db.sqlite")
+
+sqldf("CREATE TABLE events (
+      event_id varchar(20) PRIMARY KEY,
+      pro_id varchar(20) NOT NULL REFERENCES projects(project_id),
+      client_id varchar(20) NOT NULL REFERENCES clients(client_id),
+      event_type varchar(100) NOT NULL,
+      date date NOT NULL
+      )",dbname="digitalmktg_db.sqlite")
+```
+
+### Create the "ppc" table
+
+The "ppc" table contains information about the scope, monthly time budget and actual average time spent per month of each PPC project. The scope represents the management fee the digital marketing company charges to the client for overseeing their Google Ad Campaigns. 
+
+```{r, ppc_table}
+sqldf("DROP TABLE IF EXISTS ppc", dbname = "digitalmktg_db.sqlite")
+
+sqldf("CREATE TABLE ppc (
+      ppc_id varchar(20) PRIMARY KEY,
+      pro_id varchar(20) NOT NULL REFERENCES projects(project_id),
+      client_id varchar(20) NOT NULL REFERENCES clients(client_id),
+      ppc_scope decimal(10,2) NOT NULL,
+      budget_time decimal(6,2) NOT NULL,
+      monthly_avg_spend decimal(6,2) NOT NULL
+      )",dbname="digitalmktg_db.sqlite")
+```
+
+### Create the "seo" table
+
+The "seo" table contains information about the scope, monthly revenue, monthly time budget and actual average time spent per month of each SEO project. The scope represents the number of SEO pages. The scope directly correlates to the revenue. The higher the scope leads to the higher revenue for the digital marketing company. 
+
+```{r, seo_table}
+sqldf("DROP TABLE IF EXISTS seo", dbname = "digitalmktg_db.sqlite")
+
+sqldf("CREATE TABLE seo (
+      seo_id varchar(20) PRIMARY KEY,
+      pro_id varchar(20) NOT NULL REFERENCES projects(project_id),
+      client_id varchar(20) NOT NULL REFERENCES clients(client_id),
+      seo_scope int NOT NULL,
+      seo_rev decimal(10,2) NOT NULL,
+      budget_time decimal(6,2) NOT NULL,
+      monthly_avg_spend decimal(6,2) NOT NULL
+      )",dbname="digitalmktg_db.sqlite")
+```
+
+### Create the "web" table
+
+The "web" table contains information about the total revenue, total time budget and actual total time spent of each Web Design project. The scope for each Web Design project varies depending on the amount of work and hours required to build or redesign the website based on the client's request and customization.
+
+```{r, web_table}
+sqldf("DROP TABLE IF EXISTS web", dbname = "digitalmktg_db.sqlite")
+
+sqldf("CREATE TABLE web (
+     wd_id varchar(20) PRIMARY KEY,
+     pro_id varchar(20) NOT NULL REFERENCES projects(project_id),
+     client_id varchar(20) NOT NULL REFERENCES clients(client_id),
+     wd_rev decimal(10,2) NOT NULL,
+     budget_time decimal(6,2) NOT NULL,
+     total_spend decimal(6,2) NOT NULL
+     )",dbname="digitalmktg_db.sqlite")
+```
+
+## 2: Import Data from CSV Files
+
+```{r, import_data}
+# Set working directory
+
+setwd("/Users/rosenguyen/Documents/dms")
+
+dbWriteTable(db, "clients", read.csv("/Users/rosenguyen/Documents/dms/clients.csv"), append = TRUE)
+dbWriteTable(db, "projects", read.csv("/Users/rosenguyen/Documents/dms/projects.csv"), append = TRUE)
+dbWriteTable(db, "events", read.csv("/Users/rosenguyen/Documents/dms/events.csv"), append = TRUE)
+dbWriteTable(db, "ppc", read.csv("/Users/rosenguyen/Documents/dms/ppc.csv"), append = TRUE)
+dbWriteTable(db, "web", read.csv("/Users/rosenguyen/Documents/dms/web.csv"), append = TRUE)
+dbWriteTable(db, "seo", read.csv("/Users/rosenguyen/Documents/dms/seo.csv"), append = TRUE)
+```
+
+## 3: Review Data
+
+### Summary of "clients" table
+
+```{r, client_sum}
+sqldf("PRAGMA table_info(clients)", dbname = "digitalmktg_db.sqlite")
+
+sqldf("SELECT * FROM clients LIMIT 5", dbname = "digitalmktg_db.sqlite")
+
+client_review <- sqldf("SELECT COUNT(client_id) AS num_clients, COUNT (DISTINCT industry) AS unique_num_industry
+       FROM clients
+      ", dbname = "digitalmktg_db.sqlite")
+
+client_review
+```
+
+<span style="color:blue"> => The digital marketing company has a total of 500 clients across 11 different industries. 
+
+### Summary of "projects" table
+
+```{r, projects_sum}
+sqldf("PRAGMA table_info(projects)", dbname = "digitalmktg_db.sqlite")
+
+sqldf("SELECT * FROM projects LIMIT 5", dbname = "digitalmktg_db.sqlite")
+
+sqldf("SELECT COUNT(pro_id) AS num_projects, COUNT(DISTINCT pro_type) AS num_project_type, COUNT(DISTINCT client_id) AS num_clients
+       FROM projects
+      ", dbname = "digitalmktg_db.sqlite")
+```
+
+<span style="color:blue"> => The 500 clients collectively have 839 projects, categorized into three types: SEO, PPC, and Web Design.
+
+### Summary of "events" table
+
+```{r, events_sum}
+sqldf("PRAGMA table_info(events)", dbname = "digitalmktg_db.sqlite")
+
+sqldf("SELECT * FROM events LIMIT 5", dbname = "digitalmktg_db.sqlite")
+
+sqldf("SELECT COUNT(event_id) AS num_event, COUNT(DISTINCT pro_id) AS num_projects, COUNT(DISTINCT event_type) AS num_event_type
+       FROM events
+      ", dbname = "digitalmktg_db.sqlite")
+
+sqldf("SELECT DISTINCT event_type AS event_type_cat
+       FROM events
+      ", dbname = "digitalmktg_db.sqlite")
+
+sqldf("SELECT MIN(date) AS earliest_date, MAX(date) AS latest_date, (MAX(date)-MIN(date)) AS year_range
+       FROM events
+      ", dbname = "digitalmktg_db.sqlite")
+```
+
+<span style="color:blue"> => The 839 projects collectively have 2198 events, categorized into three types: start, expansion, and cancel. The date period spans from January 10, 2012 to December 31, 2023. The data set covers a 11-year period.
+
+### Summary of "ppc" table
+
+```{r, events_sum1}
+sqldf("PRAGMA table_info(ppc)", dbname = "digitalmktg_db.sqlite")
+
+sqldf("SELECT * FROM ppc LIMIT 5", dbname = "digitalmktg_db.sqlite")
+
+ppc_review <- sqldf("SELECT COUNT(ppc_id) AS num_projects, MIN(ppc_scope) AS smallest_scope, MAX(ppc_scope) AS biggest_scope, AVG(ppc_scope) AS average_scope, MAX(ppc_scope)- MIN(ppc_scope) AS scope_range 
+       FROM ppc
+      ", dbname = "digitalmktg_db.sqlite")
+
+ppc_review
+```
+
+<span style="color:blue">=> There are 311 PPC projects with a monthly scope ranging from $10,000 to $35,000. The average scope across these projects is $22,450, and the scope range is $25,000.
+
+```{r, events_sum3}
+sqldf("SELECT MIN(budget_time) AS lowest_budget_time, MAX(budget_time) AS highest_budget_time, AVG(budget_time) AS average_budget_time, MAX(budget_time)- MIN(budget_time) AS budget_time_range 
+       FROM ppc
+      ", dbname = "digitalmktg_db.sqlite")
+```
+
+The budget time encompasses the total allocated time for the entire team, including a project manager, digital marketing specialists, web developers, and the copywriters assigned to that specific project. 
+
+<span style="color:blue">=> The budget time for a PPC project varies from a minimum of 50 hours to a maximum of 175 hours, resulting in a range of 125 hours. On average, the budget time for a PPC project is approximately 112 hours.
+
+```{r, events_sum4}
+sqldf("SELECT MIN(monthly_avg_spend) AS lowest_monthly_avg_spend, MAX(monthly_avg_spend) AS highest_monthly_avg_spend, AVG(monthly_avg_spend) AS average_monthly_avg_spend, MAX(monthly_avg_spend)- MIN(monthly_avg_spend) AS monthly_avg_spend_range 
+       FROM ppc
+      ", dbname = "digitalmktg_db.sqlite")
+```
+
+The monthly average spend represents the total time spent on average per month by the entire team assigned to that specific project.  
+
+<span style="color:blue">=> The actual average time spent for a PPC project per month varies from a minimum of 51 hours to a maximum of 199 hours, resulting in a range of almost 125 hours. On average, a team actually spent approximately 148 hours on a PPC project .
+
+### Summary of "seo" table 
+
+```{r, seo_sum1}
+sqldf("PRAGMA table_info(seo)", dbname = "digitalmktg_db.sqlite")
+
+sqldf("SELECT * FROM seo LIMIT 5", dbname = "digitalmktg_db.sqlite")
+
+seo_review <- sqldf("SELECT COUNT(seo_id) AS num_projects, MIN(seo_scope ) AS smallest_scope, MAX(seo_scope ) AS biggest_scope, AVG(seo_scope ) AS average_scope, MAX(seo_scope )- MIN(seo_scope ) AS scope_range 
+       FROM seo
+      ", dbname = "digitalmktg_db.sqlite")
+
+seo_review 
+```
+
+<span style="color:blue">=> There are 386 SEO projects with the smallest scope at 500 SEO pages to the largest scope at 10,00 SEO pages. The average scope across these projects is approximately 746 SEO pages, and the scope range is 500 pages.
+
+
+```{r, seo_sum2}
+sqldf("SELECT COUNT(seo_id) AS num_projects, MIN(seo_rev) AS lowest_rev, MAX(seo_rev) AS highest_rev, AVG(seo_rev) AS average_rev, MAX(seo_rev)- MIN(seo_rev) AS rev_range 
+       FROM seo
+      ", dbname = "digitalmktg_db.sqlite")
+```
+
+<span style="color:blue">=> The revenue for a SEO project ranges from $50,000 to $100,000, creating a $50,000 span. The average revenue for an SEO project is around $74,661.
+
+```{r, seo_sum3}
+sqldf("SELECT MIN(budget_time) AS lowest_budget_time, MAX(budget_time) AS highest_budget_time, AVG(budget_time) AS average_budget_time, MAX(budget_time)- MIN(budget_time) AS budget_time_range 
+       FROM seo
+      ", dbname = "digitalmktg_db.sqlite")
+```
+
+<span style="color:blue">=> The amount of time budgeted for a SEO project varies from a minimum of 250 hours to a maximum of 500 hours, resulting in a range of 250 hours. On average, the expected time spend for a SEO project is approximately 373 hours.
+
+```{r, seo_sum4}
+sqldf("SELECT MIN(monthly_avg_spend) AS lowest_monthly_avg_spend, MAX(monthly_avg_spend) AS highest_monthly_avg_spend, AVG(monthly_avg_spend) AS average_monthly_avg_spend, MAX(monthly_avg_spend)- MIN(monthly_avg_spend) AS monthly_avg_spend_range 
+       FROM seo
+      ", dbname = "digitalmktg_db.sqlite")
+```
+
+<span style="color:blue">=> The actual average time spent for a SEO project per month varies from a minimum of 200 hours to a maximum of 499 hours, resulting in a range of 299 hours. On average, the average time spent a month for a SEO project is approximately 343 hours.
+
+### Summary of "web" table 
+
+```{r, web_sum1}
+sqldf("PRAGMA table_info(web)", dbname = "digitalmktg_db.sqlite")
+
+sqldf("SELECT * FROM web LIMIT 5", dbname = "digitalmktg_db.sqlite")
+
+web_review <- sqldf("SELECT COUNT(wd_id) AS num_projects, MIN(wd_rev) AS lowest_rev, MAX(wd_rev) AS highest_rev, AVG(wd_rev) AS average_rev, MAX(wd_rev)- MIN(wd_rev) AS rev_range 
+       FROM web
+      ", dbname = "digitalmktg_db.sqlite")
+
+web_review 
+```
+
+<span style="color:blue">=> There are 142 Web Design projects with revenue ranging from $5,000 to $95,000, showing a substantial range of $90,000. On average, the revenue from a Web Design project for this digital marketing company is approximately $52,042.
+
+```{r, web_sum2}
+sqldf("SELECT MIN(budget_time) AS lowest_budget_time, MAX(budget_time) AS highest_budget_time, AVG(budget_time) AS average_budget_time, MAX(budget_time)- MIN(budget_time) AS budget_time_range 
+       FROM web
+      ", dbname = "digitalmktg_db.sqlite")
+```
+
+Web Design is a one-time project and not a monthly recurring project. Consequently, the budget time for a Web Design project represents the total time allocated for the entire project, rather than being distributed monthly. 
+
+<span style="color:blue">=> The budget time for a Web Design project varies from a minimum of 25 hours to a maximum of 475 hours, resulting in a range of 450 hours. On average, the budget time for a PPC project is approximately 260 hours.
+
+```{r, web_sum3}
+sqldf("SELECT MIN(total_spend) AS lowest_total_spend, MAX(total_spend) AS highest_total_spend, AVG(total_spend) AS average_total_spend, MAX(total_spend)- MIN(total_spend) AS total_spend_range 
+       FROM web
+      ", dbname = "digitalmktg_db.sqlite")
+```
+
+<span style="color:blue">=> The actual total time spent on a Web Design project varies from a minimum of 25.75 hours to a maximum of 499 hours, resulting in a range of almost 1,148 hours. On average, the average time spent a month for a Web Design project is approximately 402 hours.
+
+##  4: Data Analytics and Data Visualization
+
+### Opportunity 1: Increase Customers 
+
+#### Increase customers in the industries with a client base smaller than the average size
+
+```{r, op1.1}
+# Number of clients by industry
+
+ind_client_ct <- sqldf("
+       SELECT industry, COUNT(*) AS client_ct
+       FROM clients
+       GROUP BY industry
+       ORDER BY client_ct DESC
+      ", dbname = "digitalmktg_db.sqlite")
+
+ind_client_ct
+```
+
+```{r, op1.2}
+# The average number of client per industry
+
+avg_client_num <- sqldf("
+WITH ind_client_ct AS (
+       SELECT industry, COUNT(*) AS client_ct
+       FROM clients
+       GROUP BY industry
+       ORDER BY client_ct DESC)
+
+       SELECT ROUND(AVG(client_ct), 0) AS avg_client_num
+       FROM ind_client_ct
+      ", dbname = "digitalmktg_db.sqlite")
+
+avg_client_num
+```
+
+```{r, op1.3}
+# Which industries have the client base smaller than the average size?
+
+target_industry <- sqldf("
+       SELECT industry, client_ct, ((SELECT avg_client_num FROM avg_client_num) - client_ct) AS target_increase
+       FROM ind_client_ct e1
+       WHERE client_ct < (
+       SELECT avg_client_num
+       FROM avg_client_num
+       )
+      ", dbname = "digitalmktg_db.sqlite")
+
+target_industry
+```
+
+
+```{r, op1visualization}
+# Calculate the average of client_ct
+average_client_ct <- mean(ind_client_ct$client_ct)
+
+# Wrap the x-axis labels with a maximum width of 10 characters
+ind_client_ct$industry <- str_wrap(ind_client_ct$industry, width = 10)
+
+# Plot the bar chart with the average line
+ggplot(data = ind_client_ct, aes(x = reorder(industry, -client_ct), y = client_ct)) +
+  geom_bar(stat = "identity", fill = "skyblue") +
+  geom_text(aes(label = client_ct), vjust = -0.5, color = "black") +
+  geom_hline(yintercept = average_client_ct, linetype = "solid", color = "red", size = 1) +
+  labs(title = "Client Distribution by Industry", x = "Industry", y = "Number of Clients")
+
+```
+
+<span style="color:blue"> **=> Insight: The digital marketing company has an average of 45 clients per industry. There are 6 industries with a client base below the average. **
+
+<span style="color:blue"> **=> Suggestion: They can acquire more clients in the industries with the client below the average. Given the existing clientele in these industries, they already have prior researches, resources, knowledge, and a track record of successful results and projects. This positions them well to attract potential new clients in those industries. For industries with high number of clients, the pool of new clients become smaller and it is easier to encounter the competitors of these clients.**
+
+
+```{r, op1.4}
+sqldf("
+       SELECT SUM(target_increase) AS total_client_to_grow
+       FROM target_industry
+      ", dbname = "digitalmktg_db.sqlite")
+```
+
+<span style="color:red"> **=> Conclusion: By leveraging opportunity 1, the digital marketing company can on-board up to 101 new clients, and sign up a maximum of 303 new projects considering each client can have a total of three projects.**
+
+### Opportunity 2: Increase Projects for Existing Clients 
+
+#### 1. Increase the Number of SEO projects
+
+```{r, op2.1}
+# How many clients never had an SEO project?
+
+need_seo <- sqldf("
+       SELECT COUNT( DISTINCT client_id) AS client_without_seo_ct
+       FROM projects
+       WHERE client_id NOT IN
+       (SELECT client_id
+       FROM seo)
+      ", dbname = "digitalmktg_db.sqlite")
+
+need_seo
+```
+
+<span style="color:blue"> **=> Insight: There are 114 existing clients who have never had an SEO project with the digital marketing company.** 
+
+<span style="color:blue"> **=> Suggestion: The sales team and project managers can offer SEO programs to these clients.**
+
+#### 2. Increase the Number of PPC projects
+
+```{r, op2.2}
+# How many clients never had a PPC project?
+
+need_ppc <- sqldf("
+       SELECT COUNT(DISTINCT client_id) AS client_without_ppc_ct
+       FROM projects
+       WHERE client_id NOT IN
+       (SELECT client_id
+       FROM ppc)
+      ", dbname = "digitalmktg_db.sqlite")
+
+need_ppc 
+```
+
+<span style="color:blue"> **=> Insight: There are 189 clients who have never had a PPC project with the digital marketing company.**
+
+<span style="color:blue"> **=> Suggestion: The sales team and project managers can suggest PPC programs for these existing clients.**
+
+#### 3. Increase the Number of Web Design projects
+
+```{r, op2.3}
+# How many clients never had a Web Design project?
+
+need_web_des <- sqldf("SELECT COUNT( DISTINCT client_id) AS client_without_wd_ct
+       FROM projects
+       WHERE client_id NOT IN
+       (SELECT client_id
+       FROM web)
+      ", dbname = "digitalmktg_db.sqlite")
+
+need_web_des
+```
+
+<span style="color:blue"> **=> Insight: There are 358 clients who have never signed up for a Web Design project with the digital marketing company**
+
+<span style="color:blue"> **=> Suggestion: The sales team and project managers can recommend the Web Design service to these existing clients.**
+
+```{r, op2visual}
+
+#Visualization
+
+sqldf("DROP TABLE IF EXISTS pro_type_dis", dbname = "digitalmktg_db.sqlite")
+
+
+sqldf("CREATE TABLE 'pro_type_dis'(
+      pro_type varchar(100) NOT NULL,
+      pro_existence varchar(100) NOT NULL,
+      pro_perc decimal(10,2) NOT NULL
+     )", dbname="digitalmktg_db.sqlite")
+
+sqldf(c(
+  "INSERT INTO pro_type_dis VALUES('SEO', 'With', (SELECT num_projects FROM seo_review)*100/ (SELECT num_clients FROM client_review))",
+  "INSERT INTO pro_type_dis VALUES('SEO', 'Without', (SELECT client_without_seo_ct FROM need_seo)*100/ (SELECT num_clients FROM client_review))",
+  "INSERT INTO pro_type_dis VALUES('PPC', 'With', (SELECT num_projects FROM ppc_review)*100/ (SELECT num_clients FROM client_review))",
+  "INSERT INTO pro_type_dis VALUES('PPC', 'Without', (SELECT client_without_ppc_ct FROM need_ppc)*100/ (SELECT num_clients FROM client_review))",
+  "INSERT INTO pro_type_dis VALUES('WD', 'With', (SELECT num_projects FROM web_review)*100/ (SELECT num_clients FROM client_review))",
+  "INSERT INTO pro_type_dis VALUES('WD', 'Without', (SELECT client_without_wd_ct FROM need_web_des)*100/ (SELECT num_clients FROM client_review))"
+  
+),
+dbname = "digitalmktg_db.sqlite")
+
+pro_type_dis <- 
+     sqldf("SELECT * 
+     FROM pro_type_dis
+     ", dbname="digitalmktg_db.sqlite")
+
+pro_type_dis %>%
+  ggplot() +
+  aes(x = pro_type, y = pro_perc, fill = fct_rev(fct_infreq(factor(pro_existence)))) +
+  geom_bar(stat = "identity") +
+  xlab("Project Types") +
+  ylab("Percentage of Total") +
+  geom_text(aes(label = paste0(sprintf("%1.0f", pro_perc), "%")),
+            position = position_stack(vjust = 0.5)) +
+  ggtitle("Client Distribution (%) by Project Type") +
+  theme_bw() +
+  labs(fill = "Clients")
+
+rm(pro_type_dis)
+```
+
+<span style="color:blue"> **=> Insight: Leveraging the current client base, the digital marketing company has the potential to increase PPC projects by 37%, SEO projects by 22%, and Web Design projects by 71%.**
+
+#### 4. Increase the Number of Web Design projects (Existing Web Design Clients)
+
+```{r, op2.4}
+# How many client haven't undergone a web redesign for over 3 years (or 36 months)?
+
+need_web_redes <- sqldf("
+        WITH latest_wd_pro AS (
+        SELECT client_id, MAX(date) AS latest_date
+        FROM events
+        WHERE pro_id IN (
+            SELECT pro_id
+            FROM projects
+            WHERE pro_type = 'WD'
+        )
+        GROUP BY client_id, pro_id
+    )
+       
+    SELECT COUNT(CASE WHEN((julianday('2023-12-31') - julianday(latest_date))/365)>= 3 THEN 1 ELSE 0 END) AS client_need_wd_ct
+    FROM latest_wd_pro 
+", dbname = "digitalmktg_db.sqlite")
+
+need_web_redes
+```
+
+<span style="color:blue">**=> Insight: Assuming that a website should have a web redesign every 3 years, there are currently 142 existing clients, who used this digital marketing company for their web design project, have now reached the time for a web redesign need.** 
+
+<span style="color:blue"> **=> Suggestion: The sales team and project managers can suggest and advocate a web redesign for these existing clients if applicable.**
+
+```{r, op2.5}
+total_poten_pro <- sqldf("
+       SELECT e1.client_without_seo_ct + e2.client_without_ppc_ct + e3.client_without_wd_ct + e4.client_need_wd_ct AS total_poten_pro
+       FROM need_seo e1
+       JOIN need_ppc e2
+       JOIN need_web_des e3
+       JOIN need_web_redes e4
+", dbname = "digitalmktg_db.sqlite")
+
+total_poten_pro
+```
+
+<span style="color:red"> **=> Conclusion: Through Opportunity 2, which is increasing the number of projects for existing clients, the digital marketing company has the potential to add a total of 803 new projects.**
+
+
+### Opportunity 3: Increase the Scope of the Existing Projects
+
+#### 1. Expand the scope of Existing Projects that have never been expanded in the past 2 to 11 years 
+
+```{r, op3.2}
+# How many existing projects have never been expanded before?
+
+total_pro_start <- sqldf("WITH pro_start AS(
+       SELECT pro_id, date AS start_date
+       FROM events
+       WHERE event_type ='start'
+       AND pro_id NOT IN
+          (SELECT pro_id FROM web)
+       AND pro_id NOT IN
+          (SELECT pro_id 
+          FROM events
+          WHERE event_type = 'expansion'))
+          
+      SELECT COUNT(*) AS pro_ct
+      FROM pro_start
+      WHERE ROUND(((julianday('2023-12-31') - julianday(start_date))/365),0)>= 2
+       ", dbname = "digitalmktg_db.sqlite")
+
+total_pro_start
+```
+
+<span style="color:blue"> **=> Insight: There are 58 projects (SEO and PPC) that have remained at the same scope in the past 2 to 11 years (never expanded before).**
+
+```{r, op3.2.2}
+never_ex <- sqldf("
+       WITH pro_start AS(
+       SELECT pro_id, date AS start_date
+       FROM events
+       WHERE event_type ='start'
+       AND pro_id NOT IN
+          (SELECT pro_id FROM web)
+       AND pro_id NOT IN
+          (SELECT pro_id 
+          FROM events
+          WHERE event_type = 'expansion'))
+       
+       SELECT COUNT(DISTINCT pro_id) AS pro_ct, (ROUND((julianday('2023-12-31') - julianday(start_date))/365,0)) AS period
+       FROM pro_start
+       GROUP BY period
+      ", dbname = "digitalmktg_db.sqlite")  
+
+never_ex
+```
+
+```{r, op3.1visualizaton}
+
+ggplot(never_ex, aes(x = period, y = pro_ct)) +
+  geom_bar(stat = "identity", fill = "orange", color = "black") +
+  geom_text(aes(label = pro_ct), vjust = -0.5, color = "black") + 
+  labs(title = "Projects Never Expanded Before (by their Age/Duration)",
+       x = "Duration (Years Old)",
+       y = "Number of Projects") + scale_x_continuous(breaks = seq(min(never_ex$period), max(never_ex$period), by = 1))
+
+```
+
+<span style="color:blue"> **=> Insight: Upon closer examination, we can see that the room for expansion becomes more evident. For instance, there are 10 projects that are 6 years old and have never been expanded. Fascinatingly, there is one project that is  12 years old and has never undergone an expansion.**
+
+<span style="color:blue"> **=> Suggestion: The sales team and project managers can examine the projects older than 2 years that have never had an expansion and present opportunities of increasing to larger project scopes to these respective clients.**
+
+
+#### 2. Expand the scope of Existing Projects that have not been expanded again in the past 2 to 11 years 
+
+```{r, op3.1.2}
+# How many projects haven't been expanded in the last 11 years?
+
+total_need_exp <- sqldf("
+       WITH latest_expansion AS 
+       (SELECT pro_id, MAX(date) AS latest_date
+       FROM events
+       WHERE event_type ='expansion'
+       GROUP BY pro_id)
+       
+       SELECT COUNT(pro_id) AS client_need_expan_ct
+       FROM latest_expansion
+       WHERE ROUND(((julianday('2023-12-31') - julianday(latest_date))/365),0)>= 2
+      ", dbname = "digitalmktg_db.sqlite")
+
+total_need_exp
+
+```
+
+<span style="color:blue"> **=> Insight: There are 426 projects (SEO and PPC) that have maintained the same scope in the past 2 to 11 years (since its last expansion).**  
+
+```{r, op3.1}
+# How many projects haven't been expanded again in the last 11 years?
+
+need_more_exp <- sqldf("
+       WITH latest_expansion AS 
+       (SELECT pro_id, MAX(date) AS latest_date
+       FROM events
+       WHERE event_type ='expansion'
+       GROUP BY pro_id)
+       
+       SELECT COUNT(DISTINCT pro_id) AS pro_ct, (ROUND((julianday('2023-12-31') - julianday(latest_date))/365,0)) AS period
+       FROM latest_expansion
+       GROUP BY period
+      ", dbname = "digitalmktg_db.sqlite")
+
+need_more_exp
+```
+
+```{r, op3.2visualization}
+ggplot(need_more_exp, aes(x = period, y = pro_ct)) +
+  geom_bar(stat = "identity", fill = "skyblue", color = "black") +
+  geom_text(aes(label = pro_ct), vjust = -0.5, color = "black") + 
+  labs(title = "The Last Time Existing Projects Expanded (in Years)",
+       x = "Duration (Years Ago)",
+       y = "Number of Projects") + scale_x_continuous(breaks = seq(min(need_more_exp$period), max(need_more_exp$period), by = 1))
+```
+
+<span style="color:blue"> **=> Insight: Breaking down the total number of projects by year duration (from their last expansion to now), we can see that there are numerous spaces for expansion. For example, 105 projects haven't expanded in over a year. In other words, the last time these 105 projects expanded was a year ago.**
+
+<span style="color:blue"> **=> Suggestion: The sales team and project managers can review these projects (especially the ones that have not expanded in the last 2 to 12 years) and propose expansion to these respective clients.**
+
+```{r, op3conclusion}
+sqldf("
+       SELECT e1.pro_ct + e2.client_need_expan_ct AS total_pro_op3
+       FROM total_pro_start e1
+       JOIN total_need_exp e2
+      ", dbname = "digitalmktg_db.sqlite")
+```
+
+<span style="color:red"> **=> Conclusion: By capitalizing on Opportunity 3, the digital marketing company has the potential to extend the scope of 484 existing projects.**
+
+<span style="color:red"> **=> Final Conclusion: Considering all three opportunities, by acquiring 101 new clients, initiating 803 new projects, and expanding 484 existing projects, the digital marketing company can substantially boost its revenue.**
