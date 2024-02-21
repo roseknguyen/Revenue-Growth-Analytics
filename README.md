@@ -6,6 +6,8 @@ You can check out the complete business presentation [here](https://docs.google.
 
 You can view the full Data Analytics with SQL and R [here](https://rpubs.com/rnguyen/revenue-growth-project).
 
+Check out ER Diagram: [here](https://drive.google.com/file/d/1zSF_dZnnaKRKNeSnEsOu2vb_1i8Qu6Y_/view?usp=sharing).
+
 ---
 
 **PROJECT BACKGROUND:**
